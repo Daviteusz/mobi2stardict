@@ -2,20 +2,17 @@
 Convert unpacked MOBI dictionaries to StarDict input formats: Babylon Glossary Source (GLS) format and StarDict Textual Dictionary Format
 
 # Usage
-`python.exe mobi2stardict.py --help`
+`python mobi2stardict.py -h`
 ```
-usage: mobi2stardict.py [-h] [--html-file HTML_FILE] [--fix-links] [--dict-name DICT_NAME] [--author AUTHOR] [--gls]
+usage: mobi2stardict.py [-h] [--html-folder HTML_FOLDER] [--fix-links] [--dict-name DICT_NAME] [--author AUTHOR] [--gls]
                         [--textual] [--chunked]
 
-Convert unpacked Kindle MOBI dictionary files (book.html or part00000.html) to Babylon Glossary source files (.gls) or
-to Stardict Textual Dictionary Format. These source files can later be converted to StarDict format via StarDict
-Editor. Textual xml format can be converted to a wide-range of formats directly via PyGlossary. You can unpack MOBI
-files via 'KindleUnpack' or its Calibre plugin. Alternatively, you can use mobitool from libmobi project.
+Convert unpacked Kindle MOBI dictionary files to Babylon Glossary source files or to Stardict Textual Dictionary Format.
 
 options:
   -h, --help            show this help message and exit
-  --html-file HTML_FILE
-                        Path of the HTML file.
+  --html-folder HTML_FOLDER
+                        Path of the folder containing HTML files.
   --fix-links           Try to convert in-dictionary references to glossary format.
   --dict-name DICT_NAME
                         Name of the dictionary file.
@@ -25,11 +22,11 @@ options:
   --chunked             Parse html in chunks to reduce memory usage.
 ```
 You need to install [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup) and [lxml](https://lxml.de/installation.html) packages to run the script.
-To convert the unpacked MOBI file to both GLS and Textual format you would call the script like this (assuming part00000.html is in the same directory with the script):
+To convert the unpacked MOBI files to both GLS and Textual format you would call the script like this:
 ````
-python.exe mobi2stardict.py --fix-links --dict-name "Name of the dictionary" --author "Author" --gls --textual
+python mobi2stardict.py --fix-links --html-folder ./Folder --dict-name "Name of the dictionary" --author "Author" --gls --textual
 ````
-Change name and author accordingly.
+Change name and author accordingly or not specify these parameters.
 
 Also, while converting particularly large files you may want to pass the `--chunked` option to bring down the memory usage to more moderate levels. Then the line would become:
 ````
